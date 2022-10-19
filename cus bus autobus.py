@@ -1,7 +1,6 @@
 #vlozenie modulov
 import tkinter 
 from tkinter import Tk
-
 root=Tk()
 
 #nastavenie platna a jeho rezmerov
@@ -23,15 +22,13 @@ def zastavky(): #funkcia na vypisanie zastavok
     #globalne premenne
     global x
     global lajny
+    lajny = 0
 
     #otvorenie suboru a preskocenie prveho riadku
     subor = open('vytazenost_autobusovej_linky.txt', 'r', encoding='utf-8')
     next(subor)
-    
     riadky = subor.readlines()
     
-    lajny = 0
-
     #zistenie poctu slov v riadku a nasledne podla toho vypisanie nazvov zastavok
     for index, pocet in enumerate(riadky): 
             lajny += 1
@@ -42,7 +39,8 @@ def zastavky(): #funkcia na vypisanie zastavok
             if slova == 4:
                 canvas.create_text(50,x,font='Arial 20',anchor='w',text=riadocek[2]+' '+riadocek[3])     
             x += 30
-
+    
+    #zatvorenie suboru
     subor.close()
 
 def data(event): #funkcia na vykreslenie dat z textu
@@ -52,6 +50,7 @@ def data(event): #funkcia na vykreslenie dat z textu
     global nastupujuci, vystupujuci, obsadenost
     global i
     global lajny, kapacita
+    y = 150/kapacita
 
     #otvorenie suboru a preskocenie prveho riadku
     subor = open('vytazenost_autobusovej_linky.txt', 'r', encoding='utf-8')
@@ -67,7 +66,6 @@ def data(event): #funkcia na vykreslenie dat z textu
     nieco = obsadenost
 
     #podmienky vykreslenia
-    y = 150/kapacita
     if obsadenost <= kapacita and obsadenost != 0:
         canvas.create_rectangle(250,x1,400,x1+20)
         canvas.create_rectangle(251,x1+1,251+(obsadenost*y),x1+20,fill='green',outline='')
@@ -85,4 +83,5 @@ def data(event): #funkcia na vykreslenie dat z textu
 zastavky()
 root.bind("<Key>",data)
 
+#aby fungovalo postupne zobrazovanie
 root.mainloop()
