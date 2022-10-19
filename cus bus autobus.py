@@ -14,8 +14,10 @@ x1 = 40
 nieco = 0
 i = 0
 
+#otvorenie suboru na zistenie kapacity
 subor = open('vytazenost_autobusovej_linky.txt', 'r', encoding='utf-8')
 kapacita = int(subor.readlines()[0])
+subor.close()
 
 def zastavky(): #funkcia na vypisanie zastavok
     #globalne premenne
@@ -84,5 +86,3 @@ zastavky()
 root.bind("<Key>",data)
 
 root.mainloop()
-
-
