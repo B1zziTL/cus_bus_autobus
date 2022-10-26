@@ -3,7 +3,7 @@ import tkinter
 from tkinter import Tk
 root=Tk()
 
-#nastavenie platna a jeho rezmerov
+#nastavenie platna a jeho rozmerov
 canvas = tkinter.Canvas(width=500, height=300) 
 canvas.pack() 
 
